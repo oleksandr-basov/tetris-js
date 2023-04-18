@@ -44,8 +44,6 @@ function update(time = 0) {
         dropCounter = 0;
     }
 
-
-    console.log(deltaTime);
     draw();
     requestAnimationFrame(update);
 }
@@ -55,4 +53,11 @@ const player = {
     matrix: matrix
 }
 
+document.addEventListener('keydown', event => {
+    if (event.key === "ArrowLeft") {
+        player.pos.x--;
+    } else if (event.key === "ArrowRight") {
+        player.pos.x++;
+    }
+});
 update();
