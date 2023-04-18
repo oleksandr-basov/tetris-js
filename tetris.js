@@ -58,6 +58,9 @@ document.addEventListener('keydown', event => {
         player.pos.x--;
     } else if (event.key === "ArrowRight") {
         player.pos.x++;
+    } else if (event.key === "ArrowDown") {
+        player.pos.y++;
+        dropCounter = 0;
     }
 });
 update();
