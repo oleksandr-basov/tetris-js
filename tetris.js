@@ -16,17 +16,22 @@ function draw() {
     drawMatrix(player.matrix, player.pos);
 }
 
-function drawMatrix(matrix, offset){
+function drawMatrix(matrix, offset) {
     matrix.forEach((row, y) => {
         row.forEach((value, x) => {
             if (value !== 0) {
                 context.fillStyle = 'red';
                 context.fillRect(x + offset.x,
-                                 y + offset.y,
-                                 1 , 1);
+                    y + offset.y,
+                    1, 1);
             }
         });
     });
+}
+
+function playerDrop() {
+    player.pos.y++;
+    dropCounter = 0;
 }
 
 let dropCounter = 0;
@@ -40,8 +45,7 @@ function update(time = 0) {
 
     dropCounter += deltaTime;
     if (dropCounter > dropInterval) {
-        player.pos.y++;
-        dropCounter = 0;
+        playerDrop();
     }
 
     draw();
@@ -49,7 +53,7 @@ function update(time = 0) {
 }
 
 const player = {
-    pos: {x: 5, y: 5},
+    pos: { x: 5, y: 5 },
     matrix: matrix
 }
 
@@ -59,8 +63,7 @@ document.addEventListener('keydown', event => {
     } else if (event.key === "ArrowRight") {
         player.pos.x++;
     } else if (event.key === "ArrowDown") {
-        player.pos.y++;
-        dropCounter = 0;
+        playerDrop();
     }
 });
 update();
