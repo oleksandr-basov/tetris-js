@@ -79,6 +79,10 @@ function playerMove(dir) {
     }
 }
 
+function playerRorate(dir) {
+    rotate(player.matrix, dir);
+}
+
 function rotate(matrix, dir) {
     for (let y = 0; y < matrix.length; ++y) {
         for (let x = 0; x < y; ++x) {
@@ -86,9 +90,9 @@ function rotate(matrix, dir) {
                 matrix[x][y],
                 matrix[y][x],
             ] = [
-                matrix[y][x],
-                matrix[x][y],
-            ]
+                    matrix[y][x],
+                    matrix[x][y],
+                ]
         }
     }
 
@@ -131,6 +135,10 @@ document.addEventListener('keydown', event => {
         playerMove(1);
     } else if (event.key === "ArrowDown") {
         playerDrop();
+    } else if (event.key === "q") {
+        playerRorate(-1);
+    } else if (event.key === "w") {
+        playerRorate(1);
     }
 });
 update();
